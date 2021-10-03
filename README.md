@@ -1,4 +1,4 @@
-# Welcome to the Python Essentials Class
+# Welcome to the Comprehensive Python Class
 
 ![Wintellect Logo](images/wintellect-logo.png "Wintellect Logo")
 
@@ -6,7 +6,7 @@ Wintellect helps you drive innovation by modernizing your applications and data.
 
 ## Class Information Page
 
-[https://www.t4d.io/wintellect-python-essentials-10042021](https://www.t4d.io/wintellect-python-essentials-10042021)
+[https://www.t4d.io/wintellect-comprehensive-python-10042021](https://www.t4d.io/wintellect-comprehensive-python-10042021)
 
 
 ## Other Resources
