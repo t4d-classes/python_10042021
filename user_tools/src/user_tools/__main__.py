@@ -1,45 +1,46 @@
 """ user tools app """
 
-import random
-
 from user_tools.args import get_args
 
-def append_chars_to_pool(
-    first_letter: str,
-    last_letter: str,
-    pool: list[str]) -> None:
-    """ append chars to the char pool """
+from user_tools.password_generator import PasswordGenerator
 
-    for code in range(ord(first_letter), ord(last_letter) + 1):
-        pool.append(chr(code))
+
+def password_generator_tool() -> None:
+    """ password generator tool """
+
+    args = get_args()
+
+    if args.command_name == "generate_password":
+
+        password_generator = PasswordGenerator(
+            not args.exclude_numbers,
+            not (args.exclude_letters or args.exclude_uppercase_letters),
+            not (args.exclude_letters or args.exclude_lowercase_letters),
+            not args.exclude_symbols,
+        )
+
+        print(password_generator.generate_password(args.password_length))
+
+    elif args.command_name == "generate_passwords":
+
+        password_generator = PasswordGenerator(
+            not args.exclude_numbers,
+            not (args.exclude_letters or args.exclude_uppercase_letters),
+            not (args.exclude_letters or args.exclude_lowercase_letters),
+            not args.exclude_symbols,
+        )
+
+        generated_passwords = password_generator.generate_passwords(
+            args.number_of_passwords,
+            args.password_length)
+
+        print("\n".join(generated_passwords))
+
+    else:
+
+        print("Invalid command")
 
 
 if __name__ == "__main__":
 
-    args = get_args()
-
-    char_pool: list[str] = []
-
-    append_chars_to_pool('0', '9', char_pool)
-    append_chars_to_pool('A', 'Z', char_pool)
-    append_chars_to_pool('a', 'z', char_pool)
-
-    char_pool.append('!')
-    char_pool.append('@')
-    char_pool.append('%')
-    char_pool.append('*')
-    char_pool.append('_')
-    char_pool.append('-')
-
-    generated_password = []
-
-    for _ in range(args.password_length):
-        char_pool_index = random.randrange(0, len(char_pool))
-        generated_password.append(char_pool[char_pool_index])
-
-    print("".join(generated_password))
-
-    # print(len(char_pool))
-    # print(len("Lucas"))
-    # print(char_pool.__len__())
-    # print("Lucas".__len__())
+    password_generator_tool()
