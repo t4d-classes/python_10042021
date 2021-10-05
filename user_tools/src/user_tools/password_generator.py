@@ -87,8 +87,6 @@ class PasswordGenerator:
         following the configured rules
         """
 
-        self.
-
         generated_password = []
 
         char_pool_len = len(self.char_pool)
