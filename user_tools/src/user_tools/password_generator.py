@@ -69,7 +69,7 @@ class PasswordGenerator:
         if self.include_uppercase:
             self.__append_chars_to_pool('A', 'Z')
 
-        if  self.include_lowercase:
+        if self.include_lowercase:
             self.__append_chars_to_pool('a', 'z')
 
         if self.include_symbols:
@@ -86,6 +86,8 @@ class PasswordGenerator:
         generate and return the password
         following the configured rules
         """
+
+        self.
 
         generated_password = []
 
