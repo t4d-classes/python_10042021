@@ -4,7 +4,7 @@ from datetime import date
 from collections.abc import Generator
 import holidays
 
-from rates_api.date_utils import get_list_of_days
+from .date_utils import get_list_of_days
 
 
 def business_days_list(start_date: date, end_date: date) -> list[date]:
