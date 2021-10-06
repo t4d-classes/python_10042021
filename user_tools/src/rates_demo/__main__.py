@@ -53,12 +53,17 @@ def get_rates_threaded() -> None:
 
     with ThreadPoolExecutor() as executor:
 
+        print("starting executor map")
+
         rate_responses = list(executor.map(
             get_rate_task,
             [
                 business_day
                 for business_day in business_days_gen(start_date, end_date)
             ]))
+
+        print("made it here...")
+        print(rate_responses)
 
 
     print("\n".join(rate_responses))
