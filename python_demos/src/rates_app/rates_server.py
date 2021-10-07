@@ -3,25 +3,25 @@
 from typing import Optional
 import multiprocessing as mp
 import sys
+import socket
 
 
 def rate_server() -> None:
     """rate server"""
 
-    # implement socket server
-    # the host and port should be received as parameters into this function
+    with socket.socket(
+        socket.AF_INET, socket.SOCK_STREAM) as socket_server:
 
-    # - use "AF_INET" for IPv4
-    # - use "SOCK_STREAM" for TCP
+        socket_server.bind( ('127.0.0.1', 5000) )
+        socket_server.listen()
 
-    # when a client connects, send the following string:
-    #     "Connected to the Rate Server"
+        conn, _ = socket_server.accept()
 
-    # wire up an echo server which receives a string and echos back to
-    # the client the string that is received
+        conn.sendall(b"Connected to the Rate Server")
 
-    while True:
-        pass
+        while True:
+            message = conn.recv(2048).decode('UTF-8')
+            conn.sendall(message.encode('UTF-8'))
 
 
 class RateServerError(Exception):
