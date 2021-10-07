@@ -5,14 +5,19 @@ import multiprocessing as mp
 import sys
 import socket
 
+# Create "ClientConnectionThread" class that inherits from "Thread"
 
-def rate_server() -> None:
+# Each time a client connects, a new thread should be created with the
+# "ClientConnectionThread" class. The class is responsible for sending the
+# welcome message and interacting with the client, echoing messages
+
+def rate_server(host: str, port: int) -> None:
     """rate server"""
 
     with socket.socket(
         socket.AF_INET, socket.SOCK_STREAM) as socket_server:
-
-        socket_server.bind( ('127.0.0.1', 5000) )
+        
+        socket_server.bind( (host, port) )
         socket_server.listen()
 
         conn, _ = socket_server.accept()
@@ -20,8 +25,8 @@ def rate_server() -> None:
         conn.sendall(b"Connected to the Rate Server")
 
         while True:
-            message = conn.recv(2048).decode('UTF-8')
-            conn.sendall(message.encode('UTF-8'))
+            message = conn.recv(2048)
+            conn.sendall(message)    
 
 
 class RateServerError(Exception):
@@ -34,7 +39,8 @@ def command_start_server(server_process: Optional[mp.Process]) -> mp.Process:
     if server_process and server_process.is_alive():
         print("server is already running")
     else:
-        server_process = mp.Process(target=rate_server)
+        server_process = mp.Process(
+            target=rate_server, args=('127.0.0.1', 5000))
         server_process.start()
         print("server started")
 
