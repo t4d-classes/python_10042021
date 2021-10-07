@@ -4,7 +4,6 @@ import sys
 try:
 
     # implement socket client
-    # the host and port should be received as parameters into this function
 
     # - use "AF_INET" for IPv4
     # - use "SOCK_STREAM" for TCP
