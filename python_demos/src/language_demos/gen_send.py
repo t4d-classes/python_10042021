@@ -1,7 +1,7 @@
 
 from collections.abc import Generator
 
-def do_it() -> Generator[int, str, None]:
+def do_it() -> Generator[int, str, bool]:
 
     result = yield 1
     print(result)
@@ -10,6 +10,8 @@ def do_it() -> Generator[int, str, None]:
     print(result)
 
     yield 3
+
+    return True
 
 
 gen = do_it()

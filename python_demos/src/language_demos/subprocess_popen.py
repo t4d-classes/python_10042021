@@ -5,8 +5,8 @@ p = subprocess.Popen(
     stdout=subprocess.PIPE,
     stderr=subprocess.STDOUT)
 
-retval = p.wait()
-print(retval)
+exit_code = p.wait()
+print(exit_code)
 
 if p and p.stdout:
     for line in p.stdout.readlines():

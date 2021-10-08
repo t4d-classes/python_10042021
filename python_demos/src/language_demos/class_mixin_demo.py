@@ -41,24 +41,22 @@ class Child(Parent, JsonMixin, YamlMixin):
 
 
 child = Child()
-child.append("Bob", 34)
-child.append("Tim", 23)
-child.append("Sally", 21)
-child.append("Sri", 67)
+# child.append("Bob", 34)
+# child.append("Tim", 23)
+# child.append("Sally", 21)
+# child.append("Sri", 67)
 
-print(child.to_json())
-print(child.to_yaml())
-
-
+# print(child.to_json())
+# print(child.to_yaml())
 
 
-# child += { "name": "Bob", "age": 34}
-# child += { "name": "Sri", "age": 67}
+child += { "name": "Bob", "age": 34}
+child += { "name": "Sri", "age": 67}
 
-# for person in child:
-#     print(person["name"])
+for person in child:
+    print(person["name"])
 
-# print(child)
+print(child)
 
 
 

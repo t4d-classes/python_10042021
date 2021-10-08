@@ -35,4 +35,6 @@ print(Child.__mro__)
 
 Child()
 
+print(Child2.__mro__)
+
 Child2()
